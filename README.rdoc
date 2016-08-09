@@ -10,4 +10,11 @@ Run a bundle install to load the gems
 
 Testing is not as complete as i would have liked to get.
   bundle exec rspec spec/
-  that above should run the tests
+  that above should run the couple tests
+
+Populating the App.
+  rake populate:users
+  rake populate:movies
+  10 users and 60 movies should be populated, can search and then like songs
+    either threw title artist genre.
+  You can also upload your own movies threw the new movie link.
