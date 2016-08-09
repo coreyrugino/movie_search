@@ -1,0 +1,13 @@
+== README
+
+A basic movie search app where the movies are imported by the users {title,
+genre, actors} and can be searched by eithe criteria. You do land on the
+user#index and will create a user, then you can create movies to upload.
+
+Ruby version '2.2.2'
+
+Run a bundle install to load the gems
+
+Testing is not as complete as i would have liked to get.
+  bundle exec rspec spec/
+  that above should run the tests

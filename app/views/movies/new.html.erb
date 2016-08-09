@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 class="center">New Movie</h1>
+  <hr />
+  <%= form_for @movie do |m| %>
+    <%= m.hidden_field :user_id, value: params[:user_id].to_i %>
+
+    <%= m.label :title %>
+    <%= m.text_field :title %>
+
+    <%= m.label :actors %>
+    <%= m.text_field :actors %>
+
+    <%= m.label :genre %>
+    <%= m.text_field :genre %>
+
+    <%= m.submit %>
+  <% end %>
+</div>

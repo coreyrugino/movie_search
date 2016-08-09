@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="center">
+  <h1 class="center-horizontal"><%= @user.name %>'s movies</h1>
+  <h3> <%= @heading %></h3>
+  <% if @movies.any? %>
+  <div class="row">
+    <% @movies.each do |movie| %>
+        <div class="col l4 ">
+          <div class="card green" id="journalCards">
+            <h3 class="small"><%="title: #{movie.title}"%></h3>
+            <h5><%="genre: #{movie.genre}"%></h5>
+            <h5><%="actors: #{movie.actors}"%></h5>
+            <p>
+              <%= link_to '+', add_movie_to_likes_path(user_id: @user.id, movie_id: movie.id), class: 'btn' %>
+              <% if @user.id == movie.user_id %>
+                <%= link_to 'Delete', movie_path(movie), method: :delete, class: 'btn' %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <% end %>
+  <h3> Movies you like </h3>
+  <% if @user.likes.try(:any?) %>
+    <p><%= "You have #{@user.likes.uniq.count}" %></p>
+    <div class="row">
+      <% @likes.each do |like| %>
+        <div class="col l4 ">
+          <div class="card yellow" id="journalCards">
+            <h3><%="title: #{like.title}"%></h3>
+            <h5><%="genre: #{like.genre}"%></h5>
+            <h5><%="actors: #{like.actors}"%></h5>
+            <%= link_to 'Remove', remove_movie_from_likes_path(user_id: @user.id, id: like.id), class: 'btn' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+  <p>No likes, take a gander in the search.</p>
+  <% end %>
+  <h3>search for a movie, actor or genre</h3>
+    <%= form_tag user_path , :method => 'get' do %>
+      <%= text_field_tag :search, params[:search], autofocus: true %>
+      <%= submit_tag "Search", :title => nil %>
+    </p>
+    <% end %>
+  <p>
+    <%= link_to 'New Movie', new_movie_path(user_id: @user.id) %> |
+    <%= link_to 'Back', users_path(@users) %>
+  </p>
+</div>
+</div>
